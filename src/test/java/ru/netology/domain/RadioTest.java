@@ -1,76 +1,71 @@
 package ru.netology.domain;
 
 import org.junit.jupiter.api.Test;
+import ru.netology.domain.RadioTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RadioTest {
     @Test
-
-
     void pressNextStationTest() {
-        Radio radio=new Radio();
-        radio.setStationNumberCurrent(8);
+        Radio radio = new Radio("V", 8);
         radio.pressNextStation();
         assertEquals(9, radio.getStationNumberCurrent());
     }
+
     @Test
-
-
     void pressNextStationEqualStationNumberMinTest() {
-        Radio radio=new Radio();
-        radio.setStationNumberCurrent(9);
+        Radio radio = new Radio("V", 10);
         radio.pressNextStation();
         assertEquals(0, radio.getStationNumberCurrent());
     }
 
     @Test
     void pressPrevStationTest() {
-        Radio radio=new Radio();
-        radio.setStationNumberCurrent(0);
+        Radio radio = new Radio("V", 0);
+        radio.pressPrevStation();
+        assertEquals(10, radio.getStationNumberCurrent());
+    }
+
+    @Test
+    void pressPrevStationEqualStationNumberMaxTest() {
+        Radio radio = new Radio("V", 10);
         radio.pressPrevStation();
         assertEquals(9, radio.getStationNumberCurrent());
     }
+
     @Test
-    void pressPrevStationEqualStationNumberMaxTest() {
-        Radio radio=new Radio();
-        radio.setStationNumberCurrent(9);
-        radio.pressPrevStation();
-        assertEquals(8, radio.getStationNumberCurrent());
-    }
-    @Test
-    void pressPlusVolumeMoreMaxTest() {
-        Radio radio=new Radio();
-        radio.setCurrentVolume(10);
-        radio.pressPlusVolume();
-        assertEquals(10, radio.getCurrentVolume());
-    }
-    @Test
-    void pressPlusVolumeLessMinTest() {
-        Radio radio=new Radio();
-        radio.setCurrentVolume(0);
-        radio.pressPlusVolume();
+    void CurrentVolumeMaxTest() {
+        Radio radio = new Radio();
+        radio.CurrentVolume(100);
         assertEquals(0, radio.getCurrentVolume());
     }
+
+    @Test
+    void pressPlusVolumeTest() {
+        Radio radio = new Radio();
+        radio.CurrentVolume(5);
+        radio.pressPlusVolume();
+        assertEquals(6, radio.getCurrentVolume());
+    }
+
     @Test
     void pressMinusVolumeTest() {
-        Radio radio=new Radio();
-        radio.setCurrentVolume(0);
+        Radio radio = new Radio();
+        radio.CurrentVolume(99);
         radio.pressMinusVolume();
-        assertEquals(0, radio.getCurrentVolume());
+        assertEquals(98, radio.getCurrentVolume());
     }
+
+
     @Test
-    void setCurrentVolumeMoreMaxTest(){
-        Radio radio=new Radio();
-        radio.setCurrentVolume(11);
+    void CurrentVolumeMinTest() {
+        Radio radio = new Radio();
+        radio.CurrentVolume(0);
         assertEquals(0, radio.getCurrentVolume());
     }
-    @Test
-    void setCurrentVolumeLessMinTest(){
-        Radio radio=new Radio();
-        radio.setCurrentVolume(-1);
-        assertEquals(0, radio.getCurrentVolume());
-    }
+
+
 }
 
 

@@ -1,19 +1,38 @@
 package ru.netology.domain;
 
-public class  Radio {
+public class Radio {
     private String name;
-    private final int maxVolume=10;
-    private final int minVolume=0;
+    private final int maxVolume = 100;
+    private final int minVolume = 0;
     private int currentVolume;
-    private final int stationNumberMax=9;
-    private final int stationNumberMin=0;
+    private final int stationNumberMax = 10;
+    private final int stationNumberMin = 0;
     private int stationNumberCurrent;
+
+//  constructor volume
+
+//    public Radio(int currentVolume, String name) {
+//        this.currentVolume = currentVolume;
+//        this.name = name;
+//
+//    }
+
+    public Radio() {
+    }
+
+//    constructor station
+
+    public Radio(String name, int stationNumberCurrent) {
+        this.name = name;
+        this.stationNumberCurrent = stationNumberCurrent;
+    }
 
     public int getStationNumberCurrent() {
         return stationNumberCurrent;
     }
 
     public void setStationNumberCurrent(int stationNumberCurrent) {
+
         this.stationNumberCurrent = stationNumberCurrent;
     }
 
@@ -21,38 +40,39 @@ public class  Radio {
         return currentVolume;
     }
 
-    public void setCurrentVolume(int currentVolume) {
-        if(currentVolume>maxVolume){
+    public void CurrentVolume(int currentVolume) {
+        if (currentVolume == maxVolume) {
             return;
         }
-        if(currentVolume<minVolume){
-            return;
-        }
+        if (currentVolume == minVolume) return;
         this.currentVolume = currentVolume;
+
     }
 
-    public void pressNextStation(){
-        if(stationNumberCurrent==stationNumberMax){
+    public void pressPlusVolume() {
+
+        CurrentVolume(currentVolume + 1);
+    }
+
+    public void pressMinusVolume() {
+
+        CurrentVolume(currentVolume - 1);
+    }
+
+    public void pressNextStation() {
+        if (stationNumberCurrent == stationNumberMax) {
             setStationNumberCurrent(stationNumberMin);
-        }else{
-            setStationNumberCurrent(++stationNumberCurrent);
+        } else {
+            setStationNumberCurrent(stationNumberCurrent + 1);
         }
     }
 
-    public void pressPrevStation(){
-        if(stationNumberCurrent==stationNumberMin){
+    public void pressPrevStation() {
+        if (stationNumberCurrent == stationNumberMin) {
             setStationNumberCurrent(stationNumberMax);
-        }else{
-            setStationNumberCurrent(--stationNumberCurrent);
+        } else {
+            setStationNumberCurrent(stationNumberCurrent - 1);
         }
-    }
-
-    public void pressPlusVolume(){
-        setCurrentVolume(currentVolume++);
-    }
-
-    public void pressMinusVolume(){
-        setCurrentVolume(currentVolume--);
     }
 
 
