@@ -11,10 +11,13 @@ public class Radio {
 
 //  constructor volume
 
-    public Radio(int currentVolume, String name) {
-        this.currentVolume = currentVolume;
-        this.name = name;
+//    public Radio(int currentVolume, String name) {
+//        this.currentVolume = currentVolume;
+//        this.name = name;
+//
+//    }
 
+    public Radio() {
     }
 
 //    constructor station
@@ -37,25 +40,23 @@ public class Radio {
         return currentVolume;
     }
 
-    public void setCurrentVolume(int currentVolume) {
-        if (currentVolume >= maxVolume) {
+    public void CurrentVolume(int currentVolume) {
+        if (currentVolume == maxVolume) {
             return;
         }
-        if (currentVolume <= minVolume) {
-            return;
-        }
+        if (currentVolume == minVolume) return;
         this.currentVolume = currentVolume;
 
     }
 
     public void pressPlusVolume() {
 
-        setCurrentVolume(currentVolume + 1);
+        CurrentVolume(currentVolume + 1);
     }
 
     public void pressMinusVolume() {
 
-        setCurrentVolume(currentVolume - 1);
+        CurrentVolume(currentVolume - 1);
     }
 
     public void pressNextStation() {

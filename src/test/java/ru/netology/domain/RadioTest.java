@@ -35,34 +35,37 @@ class RadioTest {
     }
 
     @Test
-    void pressPlusVolumeMoreMaxTest() {
-        Radio radio = new Radio(100, "V");
-        radio.pressPlusVolume();
-        assertEquals(100, radio.getCurrentVolume());
+    void CurrentVolumeMaxTest() {
+        Radio radio = new Radio();
+        radio.CurrentVolume(100);
+        assertEquals(0, radio.getCurrentVolume());
     }
 
     @Test
     void pressPlusVolumeTest() {
-        Radio radio = new Radio(5, "V");
+        Radio radio = new Radio();
+        radio.CurrentVolume(5);
         radio.pressPlusVolume();
         assertEquals(6, radio.getCurrentVolume());
     }
 
     @Test
     void pressMinusVolumeTest() {
-        Radio radio = new Radio(99, "V");
-
+        Radio radio = new Radio();
+        radio.CurrentVolume(99);
         radio.pressMinusVolume();
         assertEquals(98, radio.getCurrentVolume());
     }
 
 
     @Test
-    void setCurrentVolumeLessMinTest() {
-        Radio radio = new Radio(0, "V");
-
+    void CurrentVolumeMinTest() {
+        Radio radio = new Radio();
+        radio.CurrentVolume(0);
         assertEquals(0, radio.getCurrentVolume());
     }
+
+
 }
 
 
